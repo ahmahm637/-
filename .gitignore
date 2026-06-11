@@ -16,3 +16,49 @@ _site/
 # counterproductive to check this file into the repository.
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
+<!DOCTYPE html>
+<html>
+<head>
+    <title>لعبة بسيطة</title>
+    <style>
+        #gameCanvas {
+            border: 2px solid black;
+            width: 400px;
+            height: 400px;
+        }
+        .circle {
+            fill: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>اضغط على الدائرة لتحريكها</h2>
+    <svg id="gameCanvas"></svg>
+
+    <script>
+        const svg = document.getElementById('gameCanvas');
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+        // إعداد الدائرة
+        circle.setAttribute('cx', 200);
+        circle.setAttribute('cy', 200);
+        circle.setAttribute('r', 30);
+        circle.setAttribute('class', 'circle');
+
+        svg.appendChild(circle);
+
+        // تحريك الدائرة عند الضغط
+        let offsetX = 0;
+        let offsetY = 0;
+
+        svg.addEventListener('click', (e) => {
+            const rect = svg.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+        });
+    </script>
+</body>
+</html>
